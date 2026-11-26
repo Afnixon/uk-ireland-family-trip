@@ -42,58 +42,107 @@ main{padding:35px 17px 70px}.panel{display:none}.panel.active{display:block}.int
 .local-item a{font-size:12px;font-weight:700;color:#216759;text-decoration:none}
 .photo-caption{color:var(--muted);font-size:11px;margin:6px 0 0}
 @media(max-width:700px){.stay-columns,.local-grid{grid-template-columns:1fr}.stay-banner{height:190px}.stay-guide-body{padding:19px}.stay-banner-label{left:18px;font-size:24px}}
+
+/* Homepage redesign — editorial winter journal */
+body{background:#f8f6f0}
+.mainnav{background:#faf9f5;box-shadow:0 3px 20px #102c2e0a}
+.mainnav .container{max-width:1160px;align-items:center;gap:5px;min-width:0}
+.mainnav a.nav-page{text-decoration:none;color:#2c5147;padding:11px 14px;font-size:13px;white-space:nowrap;font-weight:700;border-radius:6px}
+.mainnav a.nav-page:hover,.mainnav button:hover{background:#edf2ed}
+.mainnav .navmark{font-family:"Playfair Display",serif;color:#20463e;font-size:20px;text-decoration:none;padding:5px 20px 5px 6px;margin-right:auto;white-space:nowrap}
+.navmark em{color:#ad8954;font-style:normal}.navmark span{display:block;font:700 8px "DM Sans",sans-serif;letter-spacing:.22em;line-height:1}
+.home-hero{padding:0;position:relative;min-height:575px;display:flex;align-items:stretch;background:#18342e;color:#fff;overflow:hidden}
+.home-hero-image{position:absolute;inset:0;background-image:linear-gradient(95deg,#0d2929ef 0%,#173c3ce8 40%,#23453c90 74%,#254b3a63 100%),url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1800&q=85');background-size:cover;background-position:center 52%}
+.home-hero-inner{width:100%;position:relative;z-index:1;padding:90px 17px 25px;display:flex;flex-direction:column;min-height:575px}
+.home-hero-kicker{font-size:11px;letter-spacing:.21em;font-weight:700;color:#d7d4bc;display:flex;align-items:center;gap:14px}
+.kicker-line{display:inline-block;width:28px;height:1px;background:#d8c39c}
+.home-hero h1{max-width:950px;font-size:clamp(43px,6vw,77px);line-height:1.1;letter-spacing:-.045em;font-weight:500;margin:24px 0}
+.home-hero h1 i{font-weight:500;color:#e3d0ab}
+.home-hero p{max-width:570px;font-size:17px;color:#e2ede7}
+.home-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 auto}
+.home-hero-actions button,.home-hero-actions a{display:flex;align-items:center;justify-content:space-between;gap:20px;border-radius:6px;padding:14px 19px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
+.home-main-action{background:#f3ece0;color:#1e4037;border:1px solid #f3ece0}
+.home-secondary-action{border:1px solid #ffffff85;color:white;background:transparent}
+.home-hero-foot{border-top:1px solid #ffffff40;margin-top:62px;padding-top:18px;display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;font-size:10px;font-weight:700;letter-spacing:.16em;color:#e5e8df}
+.opening-line{display:flex;justify-content:space-between;border-bottom:1px solid #dbdfd4;padding:0 0 15px;gap:12px;flex-wrap:wrap;color:#5c7469;letter-spacing:.17em;font-weight:700;font-size:10px}
+.home-intro-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:65px;padding:51px 0 38px;align-items:center}
+.home-overline{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6b826f}
+.home-intro-grid h2{font-size:clamp(38px,5vw,54px);line-height:1.12;margin:14px 0 0}
+.home-intro-grid h2 em{font-weight:500;color:#597d69}
+.home-intro-grid p{font-size:16px;line-height:1.8;color:#576e63}
+.home-facts{display:flex;gap:24px;padding-top:15px}
+.home-facts div{border-left:1px solid #c7d3c8;padding-left:15px}
+.home-facts strong{display:block;font:500 30px "Playfair Display",serif;color:#254d40}
+.home-facts span{font-size:11px;color:#5d7567}
+.home-destination-grid{display:grid;grid-template-columns:1.14fr .95fr .95fr;gap:15px}
+.destination-card{position:relative;height:340px;display:block;background:linear-gradient(135deg,#24463c,#6e8575);overflow:hidden;border-radius:12px;text-decoration:none;color:#fff}
+.destination-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.destination-card:hover img{transform:scale(1.06)}
+.destination-shade{position:absolute;inset:0;background:linear-gradient(0deg,#0b2425ed,#0b242566 52%,#0b242519)}
+.destination-content{position:absolute;bottom:0;left:0;right:0;padding:24px}
+.destination-content>span{font-size:10px;letter-spacing:.14em;font-weight:700;color:#e7e7df}
+.destination-content h3{font-size:39px;color:white;margin:6px 0 4px}
+.destination-content p{font-size:12px;color:#e8ece5;margin:0 0 20px}
+.destination-content b{display:flex;justify-content:space-between;font-size:12px;border-top:1px solid #ffffff63;padding-top:11px}
+.home-section-heading{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:64px 0 21px}
+.home-section-heading h2{margin-top:11px;font-size:clamp(32px,4vw,44px)}
+.home-text-button{background:none;border:0;text-decoration:underline;color:#26594b;font-size:13px;cursor:pointer}
+.home-highlights{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.highlight-card{background:#fff;border:1px solid #e6e8dd;padding:22px;border-radius:10px;min-height:270px;position:relative}
+.highlight-card>span{font-size:10px;color:#668170;letter-spacing:.13em;font-weight:700}
+.highlight-icon{font:500 45px "Playfair Display",serif;color:#ccdcd0;position:absolute;top:20px;right:17px}
+.highlight-card h3{font-size:23px;margin:38px 0 11px}
+.highlight-card p{font-size:12px;color:#627369}
+.highlight-card small{font-size:9px;color:#2c755c;font-weight:700;letter-spacing:.1em}
+.home-next-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:20px;margin:50px 0}
+.home-next-primary{background:#21483e;color:white;border-radius:12px;padding:34px}
+.home-next-primary .home-overline{color:#bed8be}.home-next-primary h2{color:#fff;font-size:42px;margin:15px 0}.home-next-primary p{color:#dbe6dd;max-width:520px}
+.home-quick-links{margin-top:24px;display:grid;gap:8px}
+.home-quick-links a,.home-quick-links button{padding:13px 14px;background:#ffffff12;color:white;border:1px solid #ffffff4b;border-radius:6px;text-decoration:none;text-align:left;display:flex;justify-content:space-between;cursor:pointer;font-weight:700;font-size:13px}
+.home-next-aside{background:#eeeae0;border-radius:12px;padding:32px}
+.home-next-aside h3{font-size:29px;margin:10px 0}
+.home-next-aside ul{padding-left:20px;line-height:2;color:#465b51;font-size:13px}
+.home-next-aside p{font-size:12px;color:#6d766c}
+.home-closing{text-align:center;padding:17px 0 35px;color:#718173;font:23px "Playfair Display",serif}
+.home-closing em{color:#1e5d49}
+@media(max-width:840px){.home-intro-grid{gap:26px}.home-destination-grid{grid-template-columns:repeat(2,1fr)}.destination-card:last-child{grid-column:1/-1;height:260px}.home-highlights{grid-template-columns:repeat(2,1fr)}.mainnav .navmark{margin-right:4px}}
+@media(max-width:620px){.home-hero,.home-hero-inner{min-height:535px}.home-hero-inner{padding:73px 18px 22px}.home-hero-foot{margin-top:36px;gap:10px}.home-intro-grid,.home-next-grid,.home-destination-grid{grid-template-columns:1fr}.destination-card,.destination-card:last-child{grid-column:auto;height:290px}.home-intro-grid{padding:38px 0 25px}.home-intro-grid h2{font-size:39px}.home-highlights{grid-template-columns:1fr 1fr}.highlight-card{min-height:255px;padding:17px}.highlight-card h3{font-size:20px}.home-next-primary,.home-next-aside{padding:24px}.home-next-primary h2{font-size:34px}.mainnav .container{padding:6px 11px}.mainnav .navmark{font-size:16px}.mainnav a.nav-page{font-size:12px;padding:10px}.mainnav button{font-size:12px}.home-facts{gap:13px}.home-facts span{font-size:10px}}
+@media(max-width:420px){.home-highlights{grid-template-columns:1fr}.highlight-card{min-height:175px}.highlight-card h3{margin:28px 0 8px}}
 </style></head><body>
-<header><div class="container"><div class="eyebrow">The family Christmas adventure · 2026 / 2027</div><h1>UK & Ireland<br>Holiday Journal</h1><p class="heroIntro">Portsmouth, London, Dublin and Belfast — festive traditions, history, pubs and family memories, all in one place.</p><div class="chips"><span class="chip">28 Dec – 10 Jan</span><span class="chip">London · 29 Dec – 4 Jan</span><span class="chip">Dublin · 4–7 Jan</span><span class="chip">Belfast · 7–10 Jan</span></div></div></header>
-<nav><div class="container"><button class="active" data-tab="overview">Overview</button><button data-tab="days">Daily itinerary</button><button data-tab="travel">Flights & transport</button><button data-tab="stays">Accommodation</button><button data-tab="notes">Useful notes</button></div></nav>
+<header class="home-hero">
+<div class="home-hero-image" role="img" aria-label="London's historic riverfront and skyline"></div>
+<div class="container home-hero-inner">
+<div class="home-hero-kicker">THE FAMILY WINTER JOURNAL <span class="kicker-line"></span> 2026—2027</div>
+<h1>A festive journey<br>across <i>Britain & Ireland.</i></h1>
+<p>Christmas traditions, London landmarks, hidden pubs, Irish history and the people who make every adventure worthwhile.</p>
+<div class="home-hero-actions"><button class="home-main-action" onclick="openTab('days')">Explore daily itinerary <span aria-hidden="true">↗</span></button><a class="home-secondary-action" href="./accommodation.html">Our places to stay <span aria-hidden="true">↗</span></a></div>
+<div class="home-hero-foot"><span>29 DEC — 10 JAN</span><span>PORTSMOUTH · LONDON · DUBLIN · BELFAST</span><span>FAMILY OF FIVE</span></div>
+</div></header>
+<nav class="mainnav"><div class="container"><a class="navmark" href="./index.html">UK <em>&</em> I <span>FAMILY TRIP</span></a><button class="active" data-tab="overview">Home</button><button data-tab="days">Daily itinerary</button><a class="nav-page" href="./flights.html">Flights & transport</a><a class="nav-page" href="./accommodation.html">Accommodation</a><button data-tab="notes">Packing & tips</button></div></nav>
 <main class="container">
-<section id="overview" class="panel active"><span class="tag">Our journey</span><h2>Four destinations. Two weeks of stories.</h2><p class="intro">The itinerary separates confirmed reservations from ideas so everyone knows what's fixed and what's flexible.</p><div class="cards"><div class="card city"><strong>Portsmouth</strong><span>Christmas and the Twickenham rugby outing</span></div><div class="card city"><strong>London</strong><span>Royal history, festive museums, food and New Year's Eve</span></div><div class="card city"><strong>Dublin & Belfast</strong><span>Irish coffee, Guinness, Titanic and the Causeway Coast</span></div></div><div class="two"><div class="card"><h3>Already booked</h3><p>Control Room B, Churchill War Rooms, The Wolseley, Cadogan Arms, Tower of London, The George Inn, Peaky Blinders and Coal Shed.</p><p>Also confirmed: Ireland flights, Irish Coffee Masterclass, Guinness Academy, Titanic Belfast, Hugh's tour and Bushmills.</p><button class="btn" onclick="openTab('days')">Explore each day</button></div><div class="card"><h3>Still to arrange</h3><p>New Year's Eve venue, Blacklock lunch confirmation, the Royal Oak Sunday roast and Dennis Severs' House tickets.</p><p>Check Columbia Road's 3 January opening and Christmas lights bus availability before relying on them.</p></div></div></section>
+<section id="overview" class="panel active">
+<div class="opening-line"><span>THE ITINERARY AT A GLANCE</span><span>DECEMBER 2026 / JANUARY 2027</span></div>
+<div class="home-intro-grid"><div><span class="home-overline">YOUR FAMILY TRAVEL GUIDE</span><h2>Three cities.<br><em>One unforgettable trip.</em></h2></div><div><p>Our days are filled with good food, fascinating places and time together. Explore the programme day by day, check the travel arrangements or discover the cafés and neighbourhoods around each stay.</p><div class="home-facts"><div><strong>6</strong><span>London nights</span></div><div><strong>3</strong><span>Dublin nights</span></div><div><strong>3</strong><span>Belfast nights</span></div></div></div></div>
+<div class="home-destination-grid">
+<a class="destination-card london-card" href="./index.html#days" onclick="openTab('days');renderDay(1)"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1000&q=85" loading="lazy" alt="London's iconic Westminster skyline" onerror="this.style.display='none'"><div class="destination-shade"></div><div class="destination-content"><span>01 / ENGLAND · 29 DEC – 4 JAN</span><h3>London</h3><p>Historic streets, Christmas magic and the turn of the year.</p><b>Explore London days <span aria-hidden="true">↗</span></b></div></a>
+<a class="destination-card dublin-card" href="./index.html#days" onclick="openTab('days');renderDay(7)"><img src="https://images.unsplash.com/photo-1549918864-48ac978761a4?w=1000&q=85" loading="lazy" alt="Dublin city and architecture" onerror="this.style.display='none'"><div class="destination-shade"></div><div class="destination-content"><span>02 / IRELAND · 4–7 JAN</span><h3>Dublin</h3><p>Irish coffee, a Guinness experience and old-city charm.</p><b>Explore Dublin days <span aria-hidden="true">↗</span></b></div></a>
+<a class="destination-card belfast-card" href="./index.html#days" onclick="openTab('days');renderDay(10)"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1000&q=85" loading="lazy" alt="Coastal landscape on our Northern Ireland adventure" onerror="this.style.display='none'"><div class="destination-shade"></div><div class="destination-content"><span>03 / NORTHERN IRELAND · 7–10 JAN</span><h3>Belfast</h3><p>Titanic, powerful history and the dramatic Causeway Coast.</p><b>Explore Belfast days <span aria-hidden="true">↗</span></b></div></a>
+</div>
+<div class="home-section-heading"><div><span class="home-overline">THE HIGHLIGHTS</span><h2>Dates worth circling.</h2></div><button class="home-text-button" onclick="openTab('days')">Full day-by-day plans ↗</button></div>
+<div class="home-highlights">
+<div class="highlight-card"><span>30 DECEMBER</span><div class="highlight-icon">01</div><h3>London through the ages</h3><p>Churchill War Rooms, a dress-up break, afternoon tea at The Wolseley and dinner at The Cadogan Arms.</p><small>CONFIRMED RESERVATIONS</small></div>
+<div class="highlight-card"><span>31 DECEMBER</span><div class="highlight-icon">02</div><h3>New Year's Eve</h3><p>Natural History Museum, then a proposed traditional pub celebration at The Prince Albert.</p><small>EVENING STILL TO CONFIRM</small></div>
+<div class="highlight-card"><span>2 JANUARY</span><div class="highlight-icon">03</div><h3>The Tower & the East End</h3><p>Tower of London, George Inn, Borough Market, Peaky Blinders and Coal Shed dinner.</p><small>FOUR CONFIRMED BOOKINGS</small></div>
+<div class="highlight-card"><span>9 JANUARY</span><div class="highlight-icon">04</div><h3>The Causeway Coast</h3><p>Winter coastline, Giant's Causeway and our confirmed Old Bushmills Distillery tour.</p><small>TOUR BOOKED</small></div>
+</div>
+<div class="home-next-grid"><div class="home-next-primary"><span class="home-overline">EVERYTHING IN ONE PLACE</span><h2>Arrive ready.<br>Explore freely.</h2><p>The flights, car hire and accommodation guides have their own dedicated pages, so everyone can find what they need without searching through the full itinerary.</p><div class="home-quick-links"><a href="./flights.html">✈ &nbsp; Flights & transport <span>↗</span></a><a href="./accommodation.html">⌂ &nbsp; Accommodation & local guides <span>↗</span></a><button onclick="openTab('notes')">☀ &nbsp; Packing & travel tips <span>↗</span></button></div></div>
+<div class="home-next-aside"><span class="home-overline">BEFORE WE GO</span><h3>Still to arrange</h3><ul><li>New Year's Eve venue confirmation</li><li>Blacklock's New Year's Day lunch reply</li><li>Sunday roast at The Royal Oak</li><li>Dennis Severs' House tickets</li><li>Columbia Road holiday-market opening</li></ul><p>All suggestions remain marked as provisional until they're booked.</p></div></div>
+<div class="home-closing">A family holiday made for <em>good stories, great meals and memories together.</em></div>
+</section>
 <section id="days" class="panel"><span class="tag">Day-by-day journey</span><h2>Choose a day</h2><p class="intro">Each day includes a plan and suggestions for coffee, food and drinks. All times are local.</p><div id="picker" class="daypicker"></div><div id="dayview"></div></section>
 
-<section id="travel" class="panel">
-  <div class="guide-head"><div><span class="tag">Getting there and getting around</span><h2>Flights & transport</h2></div><p>Confirmed connections, hired cars and practical transfers. All times are local. Check the original airline reservations for the latest terminal and baggage information.</p></div>
-  <div class="cards">
-    <div class="card"><h3>London → Dublin</h3><p class="route-code"><b>BA830</b> · Mon 4 Jan</p><p><b>Heathrow Terminal 5</b><br>10:40 departure</p><p><b>Dublin Terminal 2</b><br>12:10 arrival</p><span class="status">Booked · five travellers · gift from Alex</span></div>
-    <div class="card"><h3>Dublin → London</h3><p class="route-code"><b>BA829</b> · Sun 10 Jan</p><p><b>Dublin Terminal 2</b><br>11:00 departure</p><p><b>Heathrow Terminal 5</b><br>12:30 arrival</p><span class="status">Booked · five travellers · gift from Alex</span></div>
-    <div class="card"><h3>International arrivals</h3><p>Karlea and Kermit are due at Heathrow on <b>25 December</b>. Tad and Lisa are due at Heathrow on <b>29 December, 11:35</b>.</p><p class="route-details">Individual airline flight numbers and any changes should be checked in the original e-tickets.</p></div>
-  </div>
-  <div class="transport-card"><h3>London · local transport</h3><p>Your family base is in <b>Battersea</b>. Use Transport for London for live routes, and allow time for connections to Westminster, Covent Garden and the East End. Central London can be busy around New Year, especially on 1 January.</p><div class="linkrow"><a href="https://tfl.gov.uk/plan-a-journey/" target="_blank" rel="noopener">Plan a London journey ↗</a><a href="https://www.heathrow.com/at-the-airport/airport-maps" target="_blank" rel="noopener">Heathrow airport maps ↗</a></div></div>
-  <div class="transport-card"><h3>Car hire · UK & Ireland</h3><p><b>London:</b> Avis, Citroën C3 Aircross or similar, 24–29 December (separate pre-trip hire).</p><p><b>Ireland:</b> Thrifty, Peugeot 5008 or similar, 7–10 January — for Dublin to Belfast, the Causeway Coast and the airport return. Check the rental pickup/drop-off details and any cross-border conditions in the contract.</p></div>
-  <div class="note"><b>Important for Sunday 10 January:</b> BA829 departs Dublin at 11:00. Returning the car from Belfast that morning requires a very early departure, with enough time for the drive, fuel, vehicle return, security and boarding.</div>
-</section>
-<section id="stays" class="panel">
-  <div class="guide-head"><div><span class="tag">Our three family bases</span><h2>Accommodation & neighbourhood guides</h2></div><p>Where we're staying, what is nearby and where to find coffee, food, pubs and landmarks. This public page shows neighbourhood information rather than private access codes or the exact London apartment address.</p></div>
-  <article class="stay-guide">
-    <div class="stay-banner"><img loading="lazy" src="https://batterseapowerstation.co.uk/content/uploads/2024/10/Battersea-Power-Station-Christmas-credit-Charlie-Round-Turner-scaled.jpg" alt="Festive Battersea Power Station, London" onerror="this.style.display='none'"><div class="stay-banner-label">London · Battersea</div></div>
-    <div class="stay-guide-body"><span class="tag">29 December – 4 January · 6 nights</span><h3>Our Battersea Airbnb</h3><p>Family accommodation in Battersea, south of the Thames, with Battersea Park, riverside neighbourhoods and good connections to central London. Check-in is planned from <b>15:00 on 29 December</b>. The exact address is shared privately.</p><p class="photo-caption">Photo: Battersea Power Station neighbourhood landmark — not the Airbnb property.</p>
-    <div class="stay-columns">
-      <div class="stay-feature"><h4>☕ Coffee & breakfast</h4><p>WatchHouse at Battersea Power Station, Dishoom breakfast naans and cafés around Battersea Square. Local coffee options may have reduced holiday hours.</p></div>
-      <div class="stay-feature"><h4>🍴 Food nearby</h4><p>Dishoom Battersea for sharing plates, Arcade Battersea for plenty of choices and Fiume for Italian riverside dining. All remain dinner options on arrival day.</p></div>
-      <div class="stay-feature"><h4>🍸 Drinks & pubs</h4><p><b>Control Room B:</b> confirmed table for five, 29 December 18:00–20:00. <b>The Prince Albert:</b> preferred New Year's Eve venue but still awaiting confirmation. The Surprise in Chelsea is another pub option.</p></div>
-      <div class="stay-feature"><h4>🌳 Nearby highlights</h4><p>Battersea Park, Battersea Power Station, riverside walks, Lift 109 and festive installations. <b>MG&Co. / Matilda Goad</b> in Belgravia is a priority shopping detour on 29 December, timing permitting.</p></div>
-    </div><div class="linkrow"><a href="https://www.google.com/maps/search/?api=1&query=Battersea+Power+Station+London" target="_blank" rel="noopener">Explore Battersea map ↗</a><a href="https://batterseapowerstation.co.uk/" target="_blank" rel="noopener">Battersea Power Station ↗</a></div></div>
-  </article>
-  <article class="stay-guide">
-    <div class="stay-banner"><img loading="lazy" src="https://www.pointahotels.com/media/gm3cp2zf/dublin_liberties_edited-2.jpg?height=800&amp;rmode=boxpad&amp;v=1dc2ed5a2c1e4c0" alt="Point A Hotel Dublin The Liberties exterior" onerror="this.style.display='none'"><div class="stay-banner-label">Dublin · The Liberties</div></div>
-    <div class="stay-guide-body"><span class="tag">4–7 January · 3 nights · 3 rooms</span><h3>Point A Hotel Dublin Liberties</h3><p>A modern hotel in the historic Liberties district, well placed for Dublin's old city, the Guinness Storehouse and a range of independent cafés and traditional pubs.</p><p class="photo-caption">Photo: Point A Hotels official property image.</p>
-    <div class="stay-columns">
-      <div class="stay-feature"><h4>☕ Coffee & breakfast</h4><p>Two Pups on Francis Street, The Fumbally and Groundstate Coffee. Breakfast inclusion at the hotel depends on the booked room rate.</p></div>
-      <div class="stay-feature"><h4>🍴 Food nearby</h4><p>Explore the Liberties and nearby city centre for casual lunches and traditional Irish dining. Dublin's central restaurant and pub areas are within reach.</p></div>
-      <div class="stay-feature"><h4>🍸 Drinks & pubs</h4><p>Traditional pubs around the Liberties and the city centre. Guinness Storehouse Academy is booked for 5 January at <b>15:00</b>.</p></div>
-      <div class="stay-feature"><h4>🏛️ Sights & connections</h4><p>St Patrick's Cathedral, Christ Church Cathedral, Dublin Castle and the Guinness Storehouse. The Irish Coffee Masterclass is booked on 4 January at <b>16:00</b>.</p></div>
-    </div><div class="linkrow"><a href="https://www.google.com/maps/search/?api=1&query=Point+A+Hotel+Dublin+The+Liberties" target="_blank" rel="noopener">Explore hotel neighbourhood ↗</a><a href="https://www.pointahotels.com/our-hotels/dublin-the-liberties/" target="_blank" rel="noopener">Official hotel website ↗</a></div></div>
-  </article>
-  <article class="stay-guide">
-    <div class="stay-banner"><img loading="lazy" src="https://www.cunard.com/content/dam/cunard/inventory-assets/ports/BFS/BFS.jpg" alt="Belfast City Hall landmark" onerror="this.style.display='none'"><div class="stay-banner-label">Belfast · City Hall</div></div>
-    <div class="stay-guide-body"><span class="tag">7–10 January · 3 nights</span><h3>Central Belfast Apartments · City Hall area</h3><p>Our apartment base in central Belfast, convenient for City Hall, the Linen Quarter and the Cathedral Quarter. The exact apartment entrance and parking instructions are held in the private booking confirmation.</p><p class="photo-caption">Photo: Belfast City Hall landmark — not the apartment.</p>
-    <div class="stay-columns">
-      <div class="stay-feature"><h4>☕ Coffee & breakfast</h4><p>Established Coffee in the Cathedral Quarter, The Pocket and neighbourhood cafés around City Hall. Allow time for a breakfast stop before heading out.</p></div>
-      <div class="stay-feature"><h4>🍴 Food nearby</h4><p>Restaurants around City Hall and the Cathedral Quarter offer good choices for evening meals. Keep the final evening uncomplicated ahead of the early departure.</p></div>
-      <div class="stay-feature"><h4>🍺 Historic pubs</h4><p>Traditional Belfast pubs and live music around the Cathedral Quarter and city centre. Check opening times before making a special trip in early January.</p></div>
-      <div class="stay-feature"><h4>🏛️ Sights & connections</h4><p>Belfast City Hall, St George's Market and Titanic Quarter. Titanic Belfast is booked on 7 January at <b>15:00</b>; Hugh's Black Cab Tour is on 8 January at <b>10:00</b>.</p></div>
-    </div><div class="linkrow"><a href="https://www.google.com/maps/search/?api=1&query=Belfast+City+Hall" target="_blank" rel="noopener">Explore City Hall neighbourhood ↗</a><a href="https://visitbelfast.com/" target="_blank" rel="noopener">Visit Belfast ↗</a></div></div>
-  </article>
-  <div class="note"><b>Family sharing:</b> This website is public. Booking references, contact information, ticket barcodes and precise accommodation access details are intentionally excluded. Restaurants and local attractions are recommendations unless labelled as booked; seasonal opening times need confirming.</div>
-</section>
+
+
 <section id="notes" class="panel"><span class="tag">Before you go</span><h2>Helpful information</h2><div class="two"><div class="card"><h3>What to pack</h3><p>Waterproof coat, comfortable shoes, warm knitwear, gloves and scarf. Take grippy footwear for the Giant's Causeway and extra layers for Twickenham and any open-top bus tour.</p></div><div class="card"><h3>Dress-up days</h3><p>30 December: change at the Airbnb before afternoon tea at The Wolseley. 31 December: smart-casual NYE outfit. 2 January: smart comfortable clothes or subtle Peaky Blinders-inspired style.</p></div><div class="card"><h3>Places to explore</h3><p>Covent Garden, Soho, Southwark and Shoreditch have optional cafés, shops, pubs and restaurants embedded in the daily itinerary.</p></div><div class="card"><h3>Useful links</h3><p><a class="link" href="https://tfl.gov.uk/" target="_blank" rel="noopener">Transport for London</a></p><p><a class="link" href="https://www.irishrail.ie/" target="_blank" rel="noopener">Irish Rail</a></p><p><a class="link" href="https://www.metoffice.gov.uk/" target="_blank" rel="noopener">Met Office</a></p></div></div></section>
 </main><footer>Made for the family · Confirm bookings against original confirmations · Public itinerary without private booking details</footer>
 <script>
@@ -112,5 +161,5 @@ function renderDay(i){
  picker.querySelector('.active').scrollIntoView({inline:'nearest',block:'nearest'});
 }
 function openTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));}
-document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.tab)));renderDay(0);
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.tab)));renderDay(0);if(location.hash==='#days')openTab('days');if(location.hash==='#notes')openTab('notes');
 </script></body></html>
