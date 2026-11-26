@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Flight, car hire and transfer planning for the family Christmas and New Year trip."><title>Flights & transport · UK & Ireland Family Trip</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"><style>
+:root{--green:#173d38;--deep:#102c2e;--cream:#f8f6f0;--ink:#203833;--muted:#667872;--gold:#b9985e;--line:#e5e9e3}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.6 "DM Sans",sans-serif}h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.15}h1{font-size:clamp(42px,6.5vw,74px);font-weight:500;margin:10px 0 18px}h2{font-size:clamp(27px,4vw,39px);margin:6px 0 10px}h3{font-size:22px;margin:0 0 10px}p{margin:0 0 12px}
+header{background:linear-gradient(115deg,#0f302e,#2f6252);color:white;padding:46px 20px 62px}.container{max-width:1100px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:#c0ddc9;font-weight:700}.heroIntro{font-size:17px;color:#dbebe3;max-width:640px}.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.chip{border:1px solid #ffffff60;border-radius:30px;padding:7px 12px;font-size:12px}
+nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}nav .container{display:flex;gap:4px;overflow-x:auto;padding:9px 15px}nav button{border:0;border-radius:10px;padding:12px 18px;background:transparent;color:var(--ink);font-weight:700;white-space:nowrap;cursor:pointer}nav button.active{background:var(--green);color:white}
+main{padding:35px 17px 70px}.panel{display:none}.panel.active{display:block}.intro{color:var(--muted);max-width:780px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:24px 0}.card{background:white;border:1px solid var(--line);padding:24px;border-radius:16px}.city{background:linear-gradient(135deg,#17473c,#426e58);color:white;min-height:190px;display:flex;flex-direction:column;justify-content:end}.city strong{font:30px "Playfair Display",serif}.city span{font-size:12px;color:#d6e7df}.daypicker{display:flex;overflow-x:auto;gap:9px;padding:12px 0 22px}.daypicker button{border:1px solid var(--line);border-radius:12px;min-width:74px;padding:11px 12px;background:#fff;color:var(--ink);cursor:pointer}.daypicker button strong,.daypicker button small{display:block}.daypicker button strong{font-size:18px}.daypicker button.active{background:var(--green);color:white}
+.dayHero{height:300px;border-radius:20px 20px 0 0;position:relative;overflow:hidden;background:radial-gradient(circle at 70% 34%,#527f6e,#173d38 56%,#0f292b);display:flex;align-items:flex-end;color:white}.dayHero img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}.dayHero:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#0f2b2cde,transparent 85%)}.heroIcon{font-size:118px;position:absolute;right:7%;top:16%;opacity:.33}.dayCaption{position:relative;z-index:1;padding:27px}.dayCaption h2{margin:2px 0 8px}.dayCaption p{margin:0;color:#e9f1ec}.dayContent{background:#fff;border:1px solid var(--line);border-top:0;padding:28px;border-radius:0 0 20px 20px}.activity{display:grid;grid-template-columns:100px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}.activity:last-child{border:0}.time{font-weight:700;color:#227168}.status{display:inline-block;border-radius:20px;background:#e9f2ed;color:#296553;font-size:11px;font-weight:700;padding:3px 9px;margin-top:7px}.status.proposed{background:#fff1dc;color:#956e26}.activity p{color:var(--muted);font-size:13px;margin:3px 0}.recommend{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.recommend>div{border-radius:12px;background:#f1f6f2;padding:15px}.recommend span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.13em;font-weight:700;color:#327268;margin-bottom:6px}
+.note{background:#fffaf0;border-left:4px solid var(--gold);border-radius:4px 12px 12px 4px;padding:16px;margin-top:20px}.tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#6c8b78}.two{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.link{color:#1d7167;font-weight:700;text-decoration:none}.btn{background:var(--green);color:white;border:0;border-radius:10px;padding:11px 16px;cursor:pointer;font-weight:700}footer{background:var(--deep);color:#bfd4ca;text-align:center;padding:28px;font-size:12px}
+@media(max-width:690px){.cards,.recommend,.two{grid-template-columns:1fr}.dayHero{height:245px}.dayCaption{padding:19px}.dayContent{padding:19px}.activity{grid-template-columns:74px 1fr}.heroIcon{font-size:80px}nav button{padding:10px 12px}}
+
+/* Dedicated travel and accommodation guides */
+.guide-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px;justify-content:space-between;margin-bottom:20px}
+.guide-head p{max-width:750px;color:var(--muted)}
+.stay-guide{margin:20px 0 28px;background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.stay-banner{height:240px;background:linear-gradient(115deg,#254d49,#728777);position:relative}
+.stay-banner img{display:block;width:100%;height:100%;object-fit:cover}
+.stay-banner:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#102c2eb5,transparent 75%);pointer-events:none}
+.stay-banner-label{position:absolute;left:24px;bottom:19px;color:white;z-index:1;font-family:"Playfair Display",Georgia,serif;font-size:28px}
+.stay-guide-body{padding:26px}
+.stay-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:21px}
+.stay-feature{background:#f5f7f2;border:1px solid #e4eade;border-radius:13px;padding:17px}
+.stay-feature h4{margin:0 0 7px;font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:#316858}
+.stay-feature p{font-size:13px;color:var(--ink);margin:0}
+.stay-meta{font-size:13px;color:var(--muted);margin:10px 0}
+.linkrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.linkrow a{border:1px solid #cfdbd1;border-radius:9px;padding:8px 12px;text-decoration:none;color:#245f52;font-weight:700;font-size:13px}
+.transport-card{border:1px solid var(--line);background:#fff;border-radius:14px;padding:20px;margin:15px 0}
+.transport-card .route-code{font-size:21px;font-weight:700;color:#2a594f}
+.transport-card .route-details{color:var(--muted);font-size:13px}
+.transport-badge{border-radius:20px;background:#e5f2e8;color:#27644b;padding:3px 10px;font-size:11px;font-weight:700}
+.local-discoveries{margin-top:27px;border-top:1px solid var(--line);padding-top:24px}
+.local-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.local-item{border:1px solid var(--line);background:#fff;border-radius:12px;padding:16px}
+.local-item small{display:block;text-transform:uppercase;letter-spacing:.11em;color:#487262;font-size:10px;font-weight:700;margin-bottom:4px}
+.local-item b{display:block;margin-bottom:4px}.local-item p{color:var(--muted);font-size:13px;margin-bottom:8px}
+.local-item a{font-size:12px;font-weight:700;color:#216759;text-decoration:none}
+.photo-caption{color:var(--muted);font-size:11px;margin:6px 0 0}
+@media(max-width:700px){.stay-columns,.local-grid{grid-template-columns:1fr}.stay-banner{height:190px}.stay-guide-body{padding:19px}.stay-banner-label{left:18px;font-size:24px}}
+
+
+body{background:#f7f4ed}
+header.subpage-hero{background:#163731;color:#fff;padding:46px 18px 50px}
+.subpage-hero .subpage-tag{font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#c8dbc9;font-weight:700}
+.subpage-hero h1{font:500 clamp(38px,5vw,60px)/1.12 "Playfair Display",Georgia,serif;margin:10px 0 14px}
+.subpage-hero p{max-width:660px;color:#e3ede4}
+.subnav{background:white;border-bottom:1px solid #dfdfd5;position:sticky;top:0;z-index:20}
+.subnav .container{display:flex;gap:5px;padding:10px 14px;overflow-x:auto}
+.subnav a{text-decoration:none;white-space:nowrap;padding:10px 15px;font-size:13px;color:#284a3f;font-weight:700;border-radius:8px}
+.subnav a.active{background:#173d38;color:white}
+main.subpage-main{max-width:1100px;margin:auto;padding:32px 18px 70px}
+.subpage-main .panel{display:block!important}
+.subpage-footer{padding:26px 18px;background:#102c2e;color:#d2e0d7;text-align:center;font-size:12px}
+.subpage-footer a{color:#e7ead4}
+.guide-head{margin-top:0}
+@media(max-width:680px){header.subpage-hero{padding:34px 17px}.subnav a{padding:9px 11px;font-size:12px}}
+</style></head><body><header class="subpage-hero"><div class="container"><div class="subpage-tag">UK & Ireland · 2026–27</div><h1>Flights & transport</h1><p>Airports, confirmed flights, hire cars and the journeys between our destinations.</p></div></header><nav class="subnav"><div class="container"><a href="./index.html">Home</a><a href="./index.html#days">Daily itinerary</a><a href="./flights.html" class="active">Flights & transport</a><a href="./accommodation.html" class="">Accommodation</a></div></nav><main class="subpage-main"><section id="travel" class="panel active">
+  <div class="guide-head"><div><span class="tag">Getting there and getting around</span><h2>Flights & transport</h2></div><p>Confirmed connections, hired cars and practical transfers. All times are local. Check the original airline reservations for the latest terminal and baggage information.</p></div>
+  <div class="cards">
+    <div class="card"><h3>London → Dublin</h3><p class="route-code"><b>BA830</b> · Mon 4 Jan</p><p><b>Heathrow Terminal 5</b><br>10:40 departure</p><p><b>Dublin Terminal 2</b><br>12:10 arrival</p><span class="status">Booked · five travellers · gift from Alex</span></div>
+    <div class="card"><h3>Dublin → London</h3><p class="route-code"><b>BA829</b> · Sun 10 Jan</p><p><b>Dublin Terminal 2</b><br>11:00 departure</p><p><b>Heathrow Terminal 5</b><br>12:30 arrival</p><span class="status">Booked · five travellers · gift from Alex</span></div>
+    <div class="card"><h3>International arrivals</h3><p>Karlea and Kermit are due at Heathrow on <b>25 December</b>. Tad and Lisa are due at Heathrow on <b>29 December, 11:35</b>.</p><p class="route-details">Individual airline flight numbers and any changes should be checked in the original e-tickets.</p></div>
+  </div>
+  <div class="transport-card"><h3>London · local transport</h3><p>Your family base is in <b>Battersea</b>. Use Transport for London for live routes, and allow time for connections to Westminster, Covent Garden and the East End. Central London can be busy around New Year, especially on 1 January.</p><div class="linkrow"><a href="https://tfl.gov.uk/plan-a-journey/" target="_blank" rel="noopener">Plan a London journey ↗</a><a href="https://www.heathrow.com/at-the-airport/airport-maps" target="_blank" rel="noopener">Heathrow airport maps ↗</a></div></div>
+  <div class="transport-card"><h3>Car hire · UK & Ireland</h3><p><b>London:</b> Avis, Citroën C3 Aircross or similar, 24–29 December (separate pre-trip hire).</p><p><b>Ireland:</b> Thrifty, Peugeot 5008 or similar, 7–10 January — for Dublin to Belfast, the Causeway Coast and the airport return. Check the rental pickup/drop-off details and any cross-border conditions in the contract.</p></div>
+  <div class="note"><b>Important for Sunday 10 January:</b> BA829 departs Dublin at 11:00. Returning the car from Belfast that morning requires a very early departure, with enough time for the drive, fuel, vehicle return, security and boarding.</div>
+</section></main><footer class="subpage-footer">A family travel journal · Private booking codes and accommodation access details are not published · <a href="./index.html">Return to home</a></footer></body></html>
