@@ -13,7 +13,42 @@ if('serviceWorker'in navigator&&location.protocol==='https:'){window.addEventLis
 window.addEventListener('online',()=>{$('#offline-banner')?.classList.remove('show')});window.addEventListener('offline',()=>{$('#offline-banner')?.classList.add('show')});
 const nav=document.querySelectorAll('.nav-links a');nav.forEach(a=>{if(a.pathname===location.pathname||(location.pathname.endsWith('/')&&a.getAttribute('href')==='./index.html'))a.classList.add('active')});
 const blank='No itinerary details are currently available.';
-function mapFrame(lat,lon,small=false){return '<iframe class="map-frame'+(small?' small':'')+'" title="Interactive neighbourhood map" loading="lazy" referrerpolicy="no-referrer" src="'+osm(lat,lon,small?.009:.018)+'"></iframe>'}
+const activeMaps=[];
+function resetMaps(){while(activeMaps.length){try{activeMaps.pop().remove()}catch{}}}
+function mapFrame(lat,lon,small=false,stops=null){
+ const pts=(stops&&stops.length?stops:[[null,lat,lon]]);
+ const source=esc(JSON.stringify(pts));
+ return '<div class="map-frame leaflet-map'+(small?' small':'')+'" data-lat="'+lat+'" data-lng="'+lon+'" data-stops="'+source+'" role="region" aria-label="Interactive map with numbered stops"></div>';
+}
+function activateMaps(){
+ document.querySelectorAll('.leaflet-map:not([data-initialized])').forEach(el=>{
+   el.dataset.initialized='1';
+   let lat=Number(el.dataset.lat),lon=Number(el.dataset.lng),pts=[];
+   try{pts=JSON.parse(el.dataset.stops)}catch{}
+   if(!window.L){
+     el.innerHTML='<iframe class="map-frame'+(el.classList.contains('small')?' small':'')+'" title="Interactive neighbourhood map" loading="lazy" referrerpolicy="no-referrer" src="'+osm(lat,lon,el.classList.contains('small')?.009:.018)+'"></iframe>';
+     return;
+   }
+   try{
+    const m=L.map(el,{scrollWheelZoom:false,zoomControl:true}).setView([lat,lon],13);
+    activeMaps.push(m);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:19}).addTo(m);
+    const pins=[];
+    pts.forEach((p,i)=>{
+      if(!Number.isFinite(Number(p[1]))||!Number.isFinite(Number(p[2])))return;
+      const point=[Number(p[1]),Number(p[2])];pins.push(point);
+      const pin=L.divIcon({className:'trip-pin',html:'<span>'+(i+1)+'</span>',iconSize:[29,33],iconAnchor:[15,30]});
+      L.marker(point,{icon:pin}).addTo(m).bindPopup(esc(p[0]||'Area marker'));
+    });
+    if(pins.length>1){
+      L.polyline(pins,{color:'#27614b',weight:3,opacity:.75,dashArray:'5 7'}).addTo(m);
+      m.fitBounds(pins,{padding:[28,28],maxZoom:14});
+    }else if(pins.length===1)m.setView(pins[0],14);
+    setTimeout(()=>m.invalidateSize(),120);
+   }catch(e){el.textContent='Map not available right now. Use the directions links below.'}
+ });
+}
+
 function badge(status){let t=String(status);let c=/booked|confirmed/i.test(t)?'booked':/critical/i.test(t)?'critical':/await|enquiry|to book|to verify|pending|not booked|request/i.test(t)?'pending':'optional';return '<span class="badge '+c+'">'+esc(t)+'</span>'}
 function photo(src,alt,loading='lazy'){return src?'<img src="'+esc(src)+'" alt="'+esc(alt)+'" loading="'+loading+'" referrerpolicy="no-referrer">':''}
 function placeMatches(p,kind,area,term){return (kind==='All'||p.type===kind)&&(area==='All'||p.area===area)&&(!term||(p.name+' '+p.description+' '+p.area+' '+p.type).toLowerCase().includes(term.toLowerCase()))}
@@ -28,7 +63,7 @@ function home(){
 function itinerary(){
  const target=$('#itinerary-main'),strip=$('#date-strip');if(!target||!strip)return;
  let current=state().get('day');if(!D.days.some(x=>x.id===current))current=D.days[0].id;
- const jump=(id,update=true)=>{let d=D.days.find(x=>x.id===id)||D.days[0],idx=D.days.indexOf(d);
+ const jump=(id,update=true)=>{resetMaps();let d=D.days.find(x=>x.id===id)||D.days[0],idx=D.days.indexOf(d);
  if(update)history.replaceState({},'',location.pathname+'?day='+d.id);
  strip.innerHTML=D.days.map(x=>'<button class="date-btn '+(x.id===d.id?'active':'')+'" data-id="'+x.id+'"><span class="dow">'+esc(x.weekday)+'</span><strong>'+esc(x.date)+'</strong><em>'+esc(x.city)+'</em></button>').join('');
  strip.querySelector('.active')?.scrollIntoView({behavior:'auto',block:'nearest',inline:'center'});
@@ -37,19 +72,19 @@ function itinerary(){
  const recs=['☕ Coffee','🍽 Food','🍷 Drinks'].map((title,j)=>'<div><strong>'+title+'</strong><p>'+esc(d.recs[j]||blank)+'</p></div>').join('');
  const dayPlaces=D.places.filter(p=>p.day===d.id);
  const stoplist=d.stops.map((s,i)=>'<li><span>'+(i+1)+'. '+esc(s[0])+'</span><a href="'+url(s[0]+' '+d.city)+'" target="_blank" rel="noopener">Directions ↗</a></li>').join('');
- const mapbox=d.stops.length?mapFrame(d.stops[0][1],d.stops[0][2]):'<p class="muted">No fixed stops today. Use the city guide or open directions as needed.</p>';
+ const mapbox=d.stops.length?mapFrame(d.stops[0][1],d.stops[0][2],false,d.stops):'<p class="muted">No fixed stops today. Use the city guide or open directions as needed.</p>';
  const tours=D.tours[d.id]||null;
  const tourHtml=tours?'<section class="tour-panel section-gap"><span class="eyebrow">Self-guided history walk</span><h3>Westminster · four historical stops</h3><p class="muted">Read the short story at each location and use Next Stop to follow the route.</p><div id="tour-widget"></div></section>':'';
  target.innerHTML='<div class="day-layout"><div><div class="day-hero">'+photo(d.photo,d.photoLabel,'eager')+'<span class="fallback">'+esc(d.emoji)+'</span><div class="text"><span class="eyebrow light">'+esc(dateHuman(d.id))+' · '+esc(d.area)+'</span><h2>'+esc(d.title)+'</h2><p>'+esc(d.desc)+'</p></div></div><div class="day-body">'+itemRows+'<h3 style="margin-top:23px">Coffee · food · drinks</h3><div class="day-recs">'+recs+'</div>'+(dayPlaces.length?'<section class="section-gap" style="margin-top:28px"><span class="eyebrow">Nearby recommendations</span><div class="grid two" style="margin-top:14px">'+dayPlaces.slice(0,8).map(placeCard).join('')+'</div><p><a href="./places.html?day='+d.id+'">Explore all places for this day ↗</a></p></section>':'')+tourHtml+'</div></div><aside class="side-stack"><div class="info-tile"><span class="eyebrow">Today’s route</span><h3>Map & directions</h3>'+mapbox+'<ol class="stoplinks">'+stoplist+'</ol>'+(d.stops.length?'<a class="btn small dark" href="'+mapsLink(d.stops)+'" target="_blank" rel="noopener">Open walking directions ↗</a>':'')+'<p style="margin-top:10px">Map locations are planning references. Check your actual route and transit conditions before travelling.</p></div><div class="info-tile"><span class="eyebrow">What to wear</span><h3>Dress for the day</h3><p>'+esc(d.wear)+'</p></div><div class="info-tile"><span class="eyebrow">Winter conditions</span><h3>'+esc(d.city)+'</h3><p>'+esc(d.weather.climate)+'</p><p>Seasonal averages, not a live forecast.</p><a href="https://www.metoffice.gov.uk/weather" target="_blank" rel="noopener">Check the latest weather ↗</a></div><div class="info-tile"><span class="eyebrow">Share this day</span><h3>Family link</h3><p>Share this day’s plan without personal booking references.</p><button id="share-day" class="btn small dark">Copy day link ↗</button><p id="share-status" aria-live="polite"></p></div></aside></div><nav class="day-bottomnav" aria-label="Adjacent days"><div>'+(idx?'<a class="btn" href="?day='+D.days[idx-1].id+'">← '+esc(D.days[idx-1].date)+'</a>':'')+'</div><div>'+(idx<D.days.length-1?'<a class="btn dark" href="?day='+D.days[idx+1].id+'">'+esc(D.days[idx+1].date)+' →</a>':'')+'</div></nav>';
  $('#share-day').onclick=async()=>{const link=location.href;try{await navigator.clipboard.writeText(link);$('#share-status').textContent='Link copied.'}catch{window.prompt('Copy this link',link)}};
  target.querySelectorAll('.day-bottomnav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();jump(new URL(a.href).searchParams.get('day'));window.scrollTo({top:0,behavior:'smooth'})}));
- if(tours)renderTour(tours);
+ if(tours)renderTour(tours);activateMaps();
  };
  jump(current,false);
  const auto=$('#today-jump');if(auto)auto.onclick=()=>{const ymd=new Date().toLocaleDateString('en-CA',{timeZone:'Europe/London'});jump(D.days.find(x=>x.id===ymd)?.id||D.days.find(x=>x.id>ymd)?.id||D.days[0].id)};
  window.addEventListener('popstate',()=>jump(state().get('day'),false));
 }
-function renderTour(stops){let i=0;const el=$('#tour-widget');if(!el)return;function draw(){const s=stops[i];el.innerHTML='<div class="eyebrow">Stop '+(i+1)+' of '+stops.length+' · '+esc(s.time)+'</div><h3>'+esc(s.name)+'</h3><p class="tour-story">'+esc(s.story)+'</p>'+mapFrame(s.lat,s.lng,true)+'<div class="route-tools"><a href="'+url(s.name+' London')+'" target="_blank" class="btn small" rel="noopener">Directions ↗</a><button id="tour-prev" class="btn small" '+(i===0?'disabled':'')+'>← Previous</button><button id="tour-next" class="btn small dark" '+(i===stops.length-1?'disabled':'')+'>Next stop →</button></div>';$('#tour-prev').onclick=()=>{i--;draw()};$('#tour-next').onclick=()=>{i++;draw()}}draw()}
+function renderTour(stops){let i=0;const el=$('#tour-widget');if(!el)return;function draw(){const s=stops[i];el.innerHTML='<div class="eyebrow">Stop '+(i+1)+' of '+stops.length+' · '+esc(s.time)+'</div><h3>'+esc(s.name)+'</h3><p class="tour-story">'+esc(s.story)+'</p>'+mapFrame(s.lat,s.lng,true)+'<div class="route-tools"><a href="'+url(s.name+' London')+'" target="_blank" class="btn small" rel="noopener">Directions ↗</a><button id="tour-prev" class="btn small" '+(i===0?'disabled':'')+'>← Previous</button><button id="tour-next" class="btn small dark" '+(i===stops.length-1?'disabled':'')+'>Next stop →</button></div>';$('#tour-prev').onclick=()=>{resetMaps();i--;draw()};$('#tour-next').onclick=()=>{resetMaps();i++;draw()};activateMaps()}draw()}
 function places(){
  const list=$('#places-list'),query=$('#place-search'),type=$('#place-type'),area=$('#place-area'),day=$('#place-day'),count=$('#place-count');if(!list)return;
  [...new Set(D.places.map(x=>x.type))].sort().forEach(v=>type.insertAdjacentHTML('beforeend','<option>'+esc(v)+'</option>'));
@@ -63,7 +98,7 @@ function places(){
 }
 function stays(){
  const list=$('#stay-cards');if(!list)return;
- list.innerHTML=D.stays.map(s=>'<article class="section-gap"><div class="stay-hero">'+photo(s.hero,s.city+' landmark')+'<div><span class="eyebrow light">'+esc(s.dates)+' · '+s.nights+' nights</span><h2>'+esc(s.name)+'</h2><p>'+esc(s.area)+'</p></div></div><div class="stay-main"><p class="photo-caption">'+esc(s.kind)+'</p><div class="notice">'+esc(s.note)+'</div><div class="stay-columns">'+[['☕ Breakfast & coffee',s.coffee],['🍽 Food',s.food],['🍷 Pubs & drinks',s.drinks],['🏛 Things nearby',s.sights]].map(x=>'<div class="stay-collection"><h3>'+x[0]+'</h3><p>'+x[1].map(esc).join(' · ')+'</p></div>').join('')+'</div><div class="stay-map"><span class="eyebrow">Neighbourhood map</span><h3>Explore '+esc(s.area)+'</h3>'+mapFrame(s.center[0],s.center[1])+'<ol class="stoplinks">'+s.spots.map(x=>'<li><span>'+esc(x[0])+'</span><a href="'+url(x[0]+', '+s.city)+'" target="_blank" rel="noopener">Directions ↗</a></li>').join('')+'</ol></div><a class="btn dark small" href="'+esc(s.link)+'" target="_blank" rel="noopener">Open neighbourhood in Maps ↗</a></div></article>').join('');
+ list.innerHTML=D.stays.map(s=>'<article class="section-gap"><div class="stay-hero">'+photo(s.hero,s.city+' landmark')+'<div><span class="eyebrow light">'+esc(s.dates)+' · '+s.nights+' nights</span><h2>'+esc(s.name)+'</h2><p>'+esc(s.area)+'</p></div></div><div class="stay-main"><p class="photo-caption">'+esc(s.kind)+'</p><div class="notice">'+esc(s.note)+'</div><div class="stay-columns">'+[['☕ Breakfast & coffee',s.coffee],['🍽 Food',s.food],['🍷 Pubs & drinks',s.drinks],['🏛 Things nearby',s.sights]].map(x=>'<div class="stay-collection"><h3>'+x[0]+'</h3><p>'+x[1].map(esc).join(' · ')+'</p></div>').join('')+'</div><div class="stay-map"><span class="eyebrow">Neighbourhood map</span><h3>Explore '+esc(s.area)+'</h3>'+mapFrame(s.center[0],s.center[1],false,s.spots)+'<ol class="stoplinks">'+s.spots.map(x=>'<li><span>'+esc(x[0])+'</span><a href="'+url(x[0]+', '+s.city)+'" target="_blank" rel="noopener">Directions ↗</a></li>').join('')+'</ol></div><a class="btn dark small" href="'+esc(s.link)+'" target="_blank" rel="noopener">Open neighbourhood in Maps ↗</a></div></article>').join('');
 }
 function checklist(){
  const root=$('#packing-root');if(!root)return;const storageKey='family-trip-packing-2026';let picked=[];try{picked=JSON.parse(localStorage.getItem(storageKey)||'[]')}catch{}let names=D.packing.flatMap(g=>g.items);
