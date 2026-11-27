@@ -70,14 +70,14 @@ function itinerary(){
  strip.querySelectorAll('button').forEach(b=>b.onclick=()=>jump(b.dataset.id));
  const itemRows=d.items.map(x=>'<div class="activity"><span class="clock">'+esc(x[0])+'</span><div><b>'+esc(x[1])+'</b><p>'+esc(x[2])+'</p>'+badge(x[3])+'</div></div>').join('');
  const regionForDay={
- '2026-12-24':'Other London ideas','2026-12-25':'Portsmouth & Fareham',
+ '2026-12-24':'Heathrow','2026-12-25':'Portsmouth & Fareham',
  '2026-12-26':'Portsmouth & Fareham','2026-12-27':'Portsmouth & Fareham',
  '2026-12-28':'Twickenham & Richmond','2026-12-29':'Battersea & Chelsea',
  '2026-12-30':'Westminster & St James\'s','2026-12-31':'South Kensington',
  '2027-01-01':'Soho, Covent Garden & West End','2027-01-02':'Southwark, Borough & Tower Bridge',
  '2027-01-03':'East London & Spitalfields','2027-01-04':'Dublin',
  '2027-01-05':'Dublin','2027-01-06':'Dublin','2027-01-07':'Belfast',
- '2027-01-08':'Belfast','2027-01-09':'Causeway Coast','2027-01-10':'Dublin'
+ '2027-01-08':'Belfast','2027-01-09':'Causeway Coast','2027-01-10':'Dublin Airport'
  };
  const region=regionForDay[d.id]||d.city;
  const guideGroups=[['Coffee & bakeries','Coffee','☕'],['Lunch & dinner','Food','🍽'],['Pubs & drinks','Drinks','🍷'],['Music & live events','Music','♫'],['Culture & shopping','Sights','♜'],['Shops & design','Shopping','⌂']];
@@ -120,7 +120,7 @@ function places(){
  [...new Set(D.places.map(x=>x.district))].sort().forEach(v=>area.insertAdjacentHTML('beforeend','<option>'+esc(v)+'</option>'));
  D.days.forEach(d=>day.insertAdjacentHTML('beforeend','<option value="'+d.id+'">'+esc(d.date)+' · '+esc(d.city)+'</option>'));
  if(state().has('day'))day.value=state().get('day');
- function render(){const q=query.value.trim(),k=type.value,a=area.value,chosen=day.value;const found=D.places.filter(p=>placeMatches(p,k,a,q)&&(!chosen||p.day===chosen||!p.day&&p.district===({'2026-12-24':'Other London ideas','2026-12-25':'Portsmouth & Fareham','2026-12-26':'Portsmouth & Fareham','2026-12-27':'Portsmouth & Fareham','2026-12-28':'Twickenham & Richmond','2026-12-29':'Battersea & Chelsea','2026-12-30':'Westminster & St James\'s','2026-12-31':'South Kensington','2027-01-01':'Soho, Covent Garden & West End','2027-01-02':'Southwark, Borough & Tower Bridge','2027-01-03':'East London & Spitalfields','2027-01-04':'Dublin','2027-01-05':'Dublin','2027-01-06':'Dublin','2027-01-07':'Belfast','2027-01-08':'Belfast','2027-01-09':'Causeway Coast','2027-01-10':'Dublin'}[chosen])));count.textContent=found.length+' places';list.innerHTML=found.length?found.map(placeCard).join(''):'<div class="notice">No matching places. Clear the filters to explore everything.</div>';}
+ function render(){const q=query.value.trim(),k=type.value,a=area.value,chosen=day.value;const found=D.places.filter(p=>placeMatches(p,k,a,q)&&(!chosen||p.day===chosen||!p.day&&p.district===({'2026-12-24':'Heathrow','2026-12-25':'Portsmouth & Fareham','2026-12-26':'Portsmouth & Fareham','2026-12-27':'Portsmouth & Fareham','2026-12-28':'Twickenham & Richmond','2026-12-29':'Battersea & Chelsea','2026-12-30':'Westminster & St James\'s','2026-12-31':'South Kensington','2027-01-01':'Soho, Covent Garden & West End','2027-01-02':'Southwark, Borough & Tower Bridge','2027-01-03':'East London & Spitalfields','2027-01-04':'Dublin','2027-01-05':'Dublin','2027-01-06':'Dublin','2027-01-07':'Belfast','2027-01-08':'Belfast','2027-01-09':'Causeway Coast','2027-01-10':'Dublin Airport'}[chosen])));count.textContent=found.length+' places';list.innerHTML=found.length?found.map(placeCard).join(''):'<div class="notice">No matching places. Clear the filters to explore everything.</div>';}
  [query,type,area,day].forEach(el=>el.addEventListener('input',render));
  $('#clear-filters').onclick=()=>{query.value='';type.value='All';area.value='All';day.value='';render()};
  render();
