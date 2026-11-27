@@ -39,3 +39,24 @@
 .local-pick>a{font-size:11px;font-weight:700;text-decoration:none;display:inline-block;margin-top:3px}
 @media(max-width:1060px){.local-guide-grid{grid-template-columns:1fr}}
 @media(max-width:730px){.local-guide-grid{grid-template-columns:1fr}.local-guide-group{padding:17px}.local-pick-copy strong{font-size:15px}.local-pick-copy p{font-size:12px}}
+
+
+/* Browsable regional recommendations below each day's fixed schedule */
+.local-guide-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.local-guide-group{padding:0;overflow:hidden;background:#f6f8f4}
+.local-guide-heading{padding:14px 16px;margin:0;cursor:pointer;list-style:none;display:flex;gap:10px;align-items:center;border-bottom:0}
+.local-guide-heading::-webkit-details-marker{display:none}
+.local-guide-heading::after{content:'⌄';font-size:21px;margin-left:6px;color:#4c7a62;line-height:1}
+.local-guide-group[open] .local-guide-heading{border-bottom:1px solid #dce5d9}
+.local-guide-group[open] .local-guide-heading::after{transform:rotate(180deg)}
+.local-guide-heading>strong{font-size:13px;color:#225642;flex:1}
+.local-count{font-size:10px;color:#6a806e;white-space:nowrap}
+.local-guide-choices{padding:2px 16px 13px}
+.optional-stops{margin-bottom:28px;padding:19px;background:#edf3eb;border:1px solid #d5e3d5;border-radius:12px}
+.optional-stops h3{font-size:24px;margin:7px 0 14px}
+.optional-stop{display:flex;justify-content:space-between;align-items:start;gap:12px;padding:12px 0;border-bottom:1px solid #d2dfd2}
+.optional-stop:last-child{border:0}
+.optional-stop b{font-size:14px}
+.optional-stop p{font-size:12px;color:#5c7565;margin:3px 0}
+.optional-stop>a{font-size:12px;font-weight:700;white-space:nowrap;text-decoration:none}
+@media(max-width:700px){.local-guide-grid{grid-template-columns:1fr}.local-guide-heading{padding:14px}.local-guide-choices{padding:2px 15px 13px}}
