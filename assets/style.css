@@ -20,3 +20,22 @@
 .trip-pin span{display:grid;place-items:center;color:#fff;background:#235e48;border:2px solid white;box-shadow:0 3px 9px #0e211b77;border-radius:50%;width:28px;height:28px;font:700 12px "DM Sans",sans-serif;line-height:1}
 
 .leaflet-container{font-family:"DM Sans",sans-serif}
+
+
+/* Local guides — compact practical recommendations, distinct from confirmed activities */
+.local-guide{margin-top:30px;border-top:1px solid var(--line);padding-top:25px}
+.local-guide>h3{font-size:27px;margin:7px 0 6px}
+.local-guide-intro{font-size:12px;color:var(--muted);margin:0 0 17px}
+.local-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start}
+.local-guide-group{border:1px solid #e2e7df;border-radius:12px;padding:15px;background:#f6f8f4;min-width:0}
+.local-guide-heading{display:flex;align-items:center;gap:7px;border-bottom:1px solid #dce5d9;padding-bottom:10px;margin-bottom:6px}
+.local-guide-heading h4{font:700 12px "DM Sans",sans-serif;color:#245f48;margin:0}
+.local-guide-icon{font-size:16px}
+.local-pick{padding:11px 0;border-bottom:1px solid #dce5d9}
+.local-pick:last-child{border-bottom:0;padding-bottom:0}
+.local-pick-copy strong{display:block;font-size:14px;color:#234737;line-height:1.35}
+.local-pick-area{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#67836e;margin-bottom:3px}
+.local-pick-copy p{font-size:11px;color:#697a6e;line-height:1.5;margin:5px 0}
+.local-pick>a{font-size:11px;font-weight:700;text-decoration:none;display:inline-block;margin-top:3px}
+@media(max-width:1060px){.local-guide-grid{grid-template-columns:1fr}}
+@media(max-width:730px){.local-guide-grid{grid-template-columns:1fr}.local-guide-group{padding:17px}.local-pick-copy strong{font-size:15px}.local-pick-copy p{font-size:12px}}
