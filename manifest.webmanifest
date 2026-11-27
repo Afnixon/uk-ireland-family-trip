@@ -1,0 +1,18 @@
+{
+  "name": "UK & Ireland Family Winter Trip",
+  "short_name": "Family Trip",
+  "description": "Family travel guide, maps, packing and itineraries for Britain and Ireland in winter 2026–27.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f5ee",
+  "theme_color": "#183e35",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
