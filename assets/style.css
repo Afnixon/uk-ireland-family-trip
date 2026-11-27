@@ -12,3 +12,11 @@
 @media(max-width:1000px){.nav-inner{min-height:62px}.nav-links a{padding:9px 10px}.day-layout{grid-template-columns:1fr}.side-stack{grid-template-columns:repeat(2,minmax(0,1fr))}.home-places{display:none}}
 @media(max-width:730px){.wrap{padding-left:16px;padding-right:16px}.nav-inner{flex-direction:column;align-items:stretch;gap:2px;padding-top:8px;padding-bottom:5px}.wordmark{font-size:22px}.nav-links{padding-bottom:3px}.hero{min-height:490px}.hero .wrap{padding-top:60px;padding-bottom:25px}.hero h1{font-size:48px}.hero-stats{margin-top:34px}.page-hero{padding:44px 0}.split-intro{grid-template-columns:1fr;gap:12px}.grid.three,.grid.four,.grid.two,.two-cols,.packing-grid{grid-template-columns:1fr}.photo-card{height:280px}.side-stack{grid-template-columns:1fr}.day-recs{grid-template-columns:1fr}.day-hero{min-height:230px}.day-hero h2{font-size:29px}.day-body{padding:17px}.activity{grid-template-columns:79px 1fr;gap:8px}.stay-columns{grid-template-columns:1fr}.big-banner{display:block;padding:24px}.hero-actions{gap:9px}.hero-actions .btn{font-size:12px}.section-gap{margin-top:40px}.highlight-card{min-height:0}.filters>*{width:100%}.pills{width:100%}.pills>*{width:auto}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.leaflet-map{height:305px;min-height:305px;padding:0;z-index:0;overflow:hidden}
+.leaflet-map.small{height:225px;min-height:225px}
+.leaflet-map .map-frame{border:0;min-height:100%;height:100%}
+.trip-pin{background:transparent;border:0}
+.trip-pin span{display:grid;place-items:center;color:#fff;background:#235e48;border:2px solid white;box-shadow:0 3px 9px #0e211b77;border-radius:50% 50% 50% 0;transform:rotate(-45deg);width:28px;height:28px;font:700 12px "DM Sans",sans-serif;line-height:1}
+.trip-pin span::first-letter{transform:rotate(45deg)}
+.leaflet-container{font-family:"DM Sans",sans-serif}
